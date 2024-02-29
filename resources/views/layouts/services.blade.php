@@ -39,19 +39,37 @@
 {{--    <p  class="gradient text-opacity-25">--}}
 {{--        <b>Замовити трансфер</b>--}}
 {{--    </p>--}}
-    <div class="row">
+    <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
+        <img src="{{ asset('img/city.jpg') }}"  style="width:450px">
+
+    </a>
+{{--    <div class="row">--}}
 {{--        <div class="slideshow-container">--}}
 
 {{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('home')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/kiyv2.jpg') }}" style="width:100%">--}}
+{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
+{{--                    <img src="{{ asset('img/city.jpg') }}" style="width:450px; height:225px">--}}
 
 {{--                </a>--}}
 {{--            </div>--}}
 
 {{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('stationReklama')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/UZ.png') }}" style="width:100%">--}}
+{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
+{{--                    <img src="{{ asset('img/office.jpg') }}"  style="width:450px; height:225px">--}}
+
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <div class="mySlides fade">--}}
+{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
+{{--                    <img src="{{ asset('img/city.jpg') }}"  style="width:450px; height:225px">--}}
+
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <div class="mySlides fade">--}}
+{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
+{{--                    <img src="{{ asset('img/office.jpg') }}"  style="width:450px; height:225px">--}}
 
 {{--                </a>--}}
 {{--            </div>--}}
@@ -78,7 +96,7 @@
 {{--            </div>--}}
 
 {{--        </div>--}}
-        <br>
+{{--        <br>--}}
 
 {{--        <div style="text-align:left">--}}
 {{--            <span class="dot"></span>--}}
@@ -87,7 +105,7 @@
 {{--            <span class="dot"></span>--}}
 {{--            <span class="dot"></span>--}}
 {{--        </div>--}}
-    </div>
+{{--    </div>--}}
     <ul class="list-group mb-3">
 {{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
 {{--            <a href="{{route('airportReklama')}}" target="_blank"--}}
@@ -116,26 +134,31 @@
 {{--            <a href="{{route('callWorkForm')}}" target="_blank"--}}
 {{--               style="text-decoration: none;">Робота водієм</a>--}}
 {{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('taxi-gdbr')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Конфіденційність</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('taxi-umovy')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Умови</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('feedback')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Підтримка</a>--}}
-{{--        </li>--}}
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('gdpr')}}" target="_blank"
+               style="text-decoration: none;">Конфіденційність</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('umovy')}}" target="_blank"
+               style="text-decoration: none;">Умови</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('feedback')}}" target="_blank"
+               style="text-decoration: none;">Підтримка</a>
+        </li>
 {{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
 {{--            <a href="{{route('widgets-index')}}" target="_blank"--}}
 {{--               style="text-decoration: none;">Віджети</a>--}}
 {{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="https://www.facebook.com/people/Taxi-Easy-Ua/100085343706349/" target="_blank"--}}
-{{--               style="text-decoration: none;">Ми на Фейсбук</a>--}}
-{{--        </li>--}}
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="https://www.facebook.com/CpsferaVed" target="_blank"
+               style="text-decoration: none;">Ми на Фейсбук</a>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('contact')}}" target="_blank"
+               style="text-decoration: none;">Контакт</a>
+        </li>
     </ul>
     <!--                <p  class="gradient text-opacity-25">
                         <b>Теги</b>
@@ -205,47 +228,47 @@
 {{--            <b>Вам також буде цікаво:</b>--}}
 {{--        </p>--}}
 
-{{--        <div class="header gradient" >--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Експрес таксі</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Дешеве таксі</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Виклик таксі</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Таксі міжмісто</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Онлайн таксі</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Моє таксі</a>--}}
+        <div class="header gradient" >
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">митний брокер</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">митне оформлення</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">таможенный брокер</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">таможенное оформление</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">fedex таможенный брокер</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">dhl митне оформлення</a>
 
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Такси максим</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Найдешевше такси Києва</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Дешеве таксі Київ</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Таксі Київ и область</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Таксі Київ недорого телефон</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Номер дешевого таксі в Києве</a>--}}
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">услуги таможенного брокера</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">md office растаможка</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">консультация таможенного брокера</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">растаможка</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">брокер для растаможки</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">брокер митний</a>
 
 
 
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Таксі Київ недорого онлайн</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Телефон таксі Київ недорого</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Економ таксі Київ онлайн</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Номера служб таксі в Києве</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Уклон Київ телефон</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeCombo')}}" target="_blank">Убер таксі телефон</a>--}}
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">брокер по таможенному оформлению</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">брокер таможня</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">затаможка</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">импорт таможенная процедура</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">импортное таможенное оформление</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">брокерские услуги по таможенному оформлению</a>
 
 
 
@@ -262,6 +285,6 @@
 {{--            <a  class="borderElement"--}}
 {{--                href="{{ route('callBackForm') }}">--}}
 {{--                Служба підтримки</a>--}}
-{{--        </div>--}}
+        </div>
 {{--    </div>--}}
 </div>

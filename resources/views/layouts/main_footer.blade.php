@@ -16,15 +16,16 @@
     </div>
     <p class="mb-1">&copy; 2024 Сучасні послуги митного представника в Україні </p>
     <ul class="list-inline">
-{{--        <li class="list-inline-item"><a href="{{ route('taxi-gdbr') }}" target="_blank">Конфіденційність</a></li>--}}
-{{--        <li class="list-inline-item"><a href="{{route('homeCombo')}}" target="_blank">Розрахунок вартості</a></li>--}}
-{{--        <li class="list-inline-item"><a href="{{ route('taxi-umovy') }}" target="_blank">Умови</a></li>--}}
-{{--        <li class="list-inline-item"><a href="{{ route('feedback') }}" target="_blank">Підтримка</a></li>--}}
+        <li class="list-inline-item"><a href="{{route('welcome')}}" target="_blank">Головна</a></li>
+        <li class="list-inline-item"><a href="{{ route('gdpr') }}" target="_blank">Конфіденційність</a></li>
+        <li class="list-inline-item"><a href="{{ route('umovy') }}" target="_blank">Умови</a></li>
+        <li class="list-inline-item"><a href="{{ route('feedback') }}" target="_blank">Підтримка</a></li>
+        <li class="list-inline-item"><a href="{{ route('contact') }}" target="_blank">Контакт</a></li>
     </ul>
-{{--    <a href="https://www.facebook.com/people/Taxi-Easy-Ua/100085343706349/"--}}
-{{--       target="_blank" title="Сторінка сайту у Facebook" style="text-decoration: none;">--}}
-{{--        <img src="{{ asset('img/icons8-facebook-circled-24.png') }}">--}}
-{{--    </a>--}}
+    <a href="https://www.facebook.com/CpsferaVed"
+       target="_blank" title="Сторінка сайту у Facebook" style="text-decoration: none;">
+        <img src="{{ asset('img/icons8-facebook-circled-24.png') }}">
+    </a>
 {{--    <a href="https://www.linkedin.com/company/taxi-easy-ua/"--}}
 {{--       target="_blank" title="Сторінка сайту у Linkedin" style="text-decoration: none;">--}}
 {{--        <img src="{{ asset('img/icons8-linkedin-24.png') }}">--}}

@@ -231,5 +231,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    /**
+     * reCaptha key
+     */
+    'RECAPTCHA_SITE_KEY' => '6LcoVIMpAAAAAJK51TE_9XKYbU1IvPi1tMlMEn6L',
+    'RECAPTCHA_SECRET_KEY' => '6LcoVIMpAAAAAJK51TE_9XKYbU1IvPi1tMlMEn6L',
 ];
