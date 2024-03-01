@@ -1,139 +1,61 @@
 <div class="col-lg-3 col-sm-6 col-md-3">
-{{--    <a href="{{route('homeCombo')}}" target="_blank" style="text-decoration: none;">--}}
-
-{{--        <p  class="gradient text-opacity-25" id="poslugy">--}}
-{{--            <b>Послуги нашої служби.</b>--}}
-{{--        </p>--}}
-{{--    </a>--}}
-    <ul class="list-group mb-3">
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('orderReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Попереднє замовлення</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('driverReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Послуга "тверезий водій"</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('stationReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Таксі на вокзал</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('airportReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Таксі в аеропорт Бориспіль та Жуляни</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('regionReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Дешеве обласне міжміське таксі</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('tableReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Зустріч з табличкою</a>--}}
-{{--        </li>--}}
-    </ul>
-    <div class="text-center">
-{{--        <a href="{{route('homeCombo')}}" class="gradient-button animate-fading" target="_blank"--}}
-{{--           onclick="sessionStorage.clear();">Замовити таксі</a>--}}
-    </div>
-
-{{--    <p  class="gradient text-opacity-25">--}}
-{{--        <b>Замовити трансфер</b>--}}
-{{--    </p>--}}
     <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
         <img src="{{ asset('img/city.jpg') }}"  style="width:450px">
 
     </a>
-{{--    <div class="row">--}}
-{{--        <div class="slideshow-container">--}}
 
-{{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/city.jpg') }}" style="width:450px; height:225px">--}}
-
-{{--                </a>--}}
-{{--            </div>--}}
-
-{{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/office.jpg') }}"  style="width:450px; height:225px">--}}
-
-{{--                </a>--}}
-{{--            </div>--}}
-
-{{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/city.jpg') }}"  style="width:450px; height:225px">--}}
-
-{{--                </a>--}}
-{{--            </div>--}}
-
-{{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/office.jpg') }}"  style="width:450px; height:225px">--}}
-
-{{--                </a>--}}
-{{--            </div>--}}
-
-{{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('airportReklama')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/borispol.png') }}" style="width:100%">--}}
-
-{{--                </a>--}}
-{{--            </div>--}}
-
-{{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('airportReklama')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/sikorskogo.png') }}" style="width:100%">--}}
-
-{{--                </a>--}}
-{{--            </div>--}}
-
-{{--            <div class="mySlides fade">--}}
-{{--                <a href="{{route('stationReklama')}}" target="_blank" style="text-decoration: none;">--}}
-{{--                    <img src="{{ asset('img/auto.jpeg') }}" style="width:100%">--}}
-
-{{--                </a>--}}
-{{--            </div>--}}
-
-{{--        </div>--}}
-{{--        <br>--}}
-
-{{--        <div style="text-align:left">--}}
-{{--            <span class="dot"></span>--}}
-{{--            <span class="dot"></span>--}}
-{{--            <span class="dot"></span>--}}
-{{--            <span class="dot"></span>--}}
-{{--            <span class="dot"></span>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <ul class="list-group mb-3">
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('airportReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">До аеропорту "Бориспіль"</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('airportReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">До аеропорту "Киів" (Жуляни)</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('stationReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">До залізничного вокзалу</a>--}}
-{{--        </li>--}}
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('stationReklama')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">До автовокзалу</a>--}}
-{{--        </li>--}}
+        <br>
+        <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
+            <p  class="gradient text-opacity-25" id="poslugy">
+                <b>Сервіси</b>
+            </p>
+        </a>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('uktved')}}" target="_blank"
+               style="text-decoration: none;">УКТЗЕД</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('mku')}}" target="_blank"
+               style="text-decoration: none;">Митний кодекс 2012</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('incoterms')}}" target="_blank"
+               style="text-decoration: none;">Інкотермс</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('payments')}}" target="_blank"
+               style="text-decoration: none;">Розрахунок митних платежів</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('auto')}}" target="_blank"
+               style="text-decoration: none;">Розрахунок авто</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('md')}}" target="_blank"
+               style="text-decoration: none;">Програми MDOffice</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('auto')}}" target="_blank"
+               style="text-decoration: none;">Розрахунок авто</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('map')}}" target="_blank"
+               style="text-decoration: none;">Митна мапа</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="{{route('uz')}}" target="_blank"
+               style="text-decoration: none;">З/Д станції</a>
+        </li>
     </ul>
 
-{{--    <p  class="gradient text-opacity-25">--}}
-{{--        <b>Додатково</b>--}}
-{{--    </p>--}}
-
     <ul class="list-group mb-3">
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('callWorkForm')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Робота водієм</a>--}}
-{{--        </li>--}}
+        <br>
+        <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
+            <p  class="gradient text-opacity-25" id="poslugy">
+                <b>Про нас</b>
+            </p>
+        </a>
         <li class="list-group-item d-flex justify-content-between lh-sm">
             <a href="{{route('gdpr')}}" target="_blank"
                style="text-decoration: none;">Конфіденційність</a>
@@ -146,10 +68,7 @@
             <a href="{{route('feedback')}}" target="_blank"
                style="text-decoration: none;">Підтримка</a>
         </li>
-{{--        <li class="list-group-item d-flex justify-content-between lh-sm">--}}
-{{--            <a href="{{route('widgets-index')}}" target="_blank"--}}
-{{--               style="text-decoration: none;">Віджети</a>--}}
-{{--        </li>--}}
+
         <li class="list-group-item d-flex justify-content-between lh-sm">
             <a href="https://www.facebook.com/CpsferaVed" target="_blank"
                style="text-decoration: none;">Ми на Фейсбук</a>

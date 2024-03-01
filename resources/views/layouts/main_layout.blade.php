@@ -93,6 +93,8 @@
     <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/base/jquery-ui.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/appAdd.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/auto_calc_cost.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/uktved.css') }}" rel="stylesheet">
 </head>
 <body>
 

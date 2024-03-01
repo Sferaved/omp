@@ -37,6 +37,42 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/uktved', function () {
+    return view('services.uktved');
+})->name('uktved');
+
+Route::get('/mku', function () {
+    return view('services.mku');
+})->name('mku');
+
+Route::get('/incoterms', function () {
+    return view('services.incoterms');
+})->name('incoterms');
+
+Route::get('/payments', function () {
+    return view('services.payments');
+})->name('payments');
+
+Route::get('/auto', function () {
+    return view('services.auto');
+})->name('auto');
+
+Route::get('/md', function () {
+    return view('services.md');
+})->name('md');
+
+Route::get('/news', function () {
+    return view('services.news');
+})->name('news');
+
+Route::get('/map', function () {
+    return view('services.map');
+})->name('map');
+
+Route::get('/uz', function () {
+    return view('services.uz');
+})->name('uz');
+
 Route::get('/feedback/email', [HomeController::class, 'feedbackEmail'])->name('email');
 
 
