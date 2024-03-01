@@ -17,6 +17,7 @@
                     </a>
 
                 </div>
+
                 <div class="container-fluid">
                     <div class="row">
                         <ul class="olderOne">
@@ -160,9 +161,9 @@
                 <br>
                 <!--Mdoffice.com.ua -->
                 <iframe
-                    src="https://www.mdoffice.com.ua/ua/MDONewsScript.html?p_days=3" height="1000px" class="container-fluid"></iframe>
+                    src="https://www.mdoffice.com.ua/ua/MDONewsScript.html?p_days=1" height="300px" class="container-fluid"></iframe>
                 <!--//Mdoffice.com.ua-->
-                </div>
+
 
         </div>
 

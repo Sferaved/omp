@@ -21,7 +21,7 @@
                     <div class="container-fluid">
                         <!--Mdoffice.com.ua -->
                         <iframe
-                            src="https://www.mdoffice.com.ua/ua/incotermsscript.html" frameborder="0" marginheight=0 marginwidth=0 height="1000px"  class="container-fluid"></iframe>
+                            src="https://www.mdoffice.com.ua/ua/incotermsscript.html" frameborder="0" marginheight=0 marginwidth=0 height="850px"  class="container-fluid"></iframe>
                         <!--//Mdoffice.com.ua-->
                     </div>
                     <div class="container-fluid" style="margin: 10px">

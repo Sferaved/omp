@@ -21,7 +21,7 @@
                     <div class="container-fluid">
                         <!--Mdoffice.com.ua -->
                         <iframe
-                            src="https://www.mdoffice.com.ua/ua/UktVED.GetTNVCodeUAS?p_form=2" frameborder="0" marginheight=0 marginwidth=0 height="1000px" class="container-fluid" ></iframe>
+                            src="https://www.mdoffice.com.ua/ua/UktVED.GetTNVCodeUAS?p_form=2" frameborder="0" marginheight=0 marginwidth=0 height="700px" class="container-fluid" ></iframe>
                         <!--//Mdoffice.com.ua-->
                     </div>
                     <div class="container-fluid" style="margin: 10px">
