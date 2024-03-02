@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://omp.net.ua/sitemap.xml

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://omp.net.ua/</loc>
+        <lastmod>2024-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/</loc>
+        <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/contact</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/gdpr</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/umovy</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+    <loc>https://omp.net.ua/feedback</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/gdpr</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/tuktved</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/mku</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/incoterms</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/payments</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/auto</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/md</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/map</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
+        <loc>https://omp.net.ua/uz</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+ </urlset>

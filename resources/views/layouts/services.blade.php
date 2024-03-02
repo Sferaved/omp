@@ -1,8 +1,4 @@
 <div class="col-lg-3 col-sm-6 col-md-3">
-    <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
-        <img src="{{ asset('img/city.jpg') }}"  style="width:450px">
-
-    </a>
 
     <ul class="list-group mb-3">
         <br>

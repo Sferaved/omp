@@ -61,10 +61,6 @@ Route::get('/md', function () {
     return view('services.md');
 })->name('md');
 
-Route::get('/news', function () {
-    return view('services.news');
-})->name('news');
-
 Route::get('/map', function () {
     return view('services.map');
 })->name('map');
