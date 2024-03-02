@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
+use Illuminate\Support\Facades\Session;
+
 class Authenticate extends Middleware
 {
     /**
@@ -15,7 +17,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('welcome');
+            // Добавляем сообщение об ошибке во флеш-сессию
+            Session::flash('error', 'Ви повинні увійти в систему, щоб переглянути цю сторінку.');
+            // Перенаправляем пользователя на страницу входа
+            return route('login');
         }
     }
 }
+

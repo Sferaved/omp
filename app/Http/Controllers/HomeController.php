@@ -39,42 +39,51 @@ class HomeController extends Controller
      */
     public function feedbackEmail(Request $req)
     {
+        $params = [
+            'email' => $req->email,
+            'subject' => $req->subject,
+            'message' => $req->message,
+        ];
 
-        Log::info($req);
-        $error = true;
-        $secret = config('app.RECAPTCHA_SECRET_KEY');
-
-        if (!empty($_GET['g-recaptcha-response'])) { //проверка на робота
-            $curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, 'secret=' . $secret . '&response=' . $_GET['g-recaptcha-response']);
-            $out = curl_exec($curl);
-            curl_close($curl);
-
-            $out = json_decode($out);
-            if ($out->success == true) {
-                $params = [
-                    'email' => $req->email,
-                    'subject' => $req->subject,
-                    'message' => $req->message,
-                ];
-
-                Mail::to('sferaved@gmail.com')->send(new Feedback($params));
-                return redirect()->route('welcome')
-                    ->with('success',
-                        "Повідомлення успішно надіслано адміністратору сайту. Чекайте на відповідь на свій email.");
-            }
-        }
-        if ($error) {
-            $params = [
-                'email' => $req->email,
-                'subject' => $req->subject,
-                'message' => $req->message,
-            ];
-            return view('feedback', ['params' => $params,
-                'info' => 'Не пройдено перевірку на робота.']);
-        }
+        Mail::to('sferaved@gmail.com')->send(new Feedback($params));
+        return redirect()->route('welcome')
+            ->with('success',
+                "Повідомлення успішно надіслано адміністратору сайту. Чекайте на відповідь на свій email.");
+//        Log::info($req);
+//        $error = true;
+//        $secret = config('app.RECAPTCHA_SECRET_KEY');
+//
+//        if (!empty($_GET['g-recaptcha-response'])) { //проверка на робота
+//            $curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
+//            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//            curl_setopt($curl, CURLOPT_POST, true);
+//            curl_setopt($curl, CURLOPT_POSTFIELDS, 'secret=' . $secret . '&response=' . $_GET['g-recaptcha-response']);
+//            $out = curl_exec($curl);
+//            curl_close($curl);
+//
+//            $out = json_decode($out);
+//            if ($out->success == true) {
+//                $params = [
+//                    'email' => $req->email,
+//                    'subject' => $req->subject,
+//                    'message' => $req->message,
+//                ];
+//
+//                Mail::to('sferaved@gmail.com')->send(new Feedback($params));
+//                return redirect()->route('welcome')
+//                    ->with('success',
+//                        "Повідомлення успішно надіслано адміністратору сайту. Чекайте на відповідь на свій email.");
+//            }
+//        }
+//        if ($error) {
+//            $params = [
+//                'email' => $req->email,
+//                'subject' => $req->subject,
+//                'message' => $req->message,
+//            ];
+//            return view('feedback', ['params' => $params,
+//                'info' => 'Не пройдено перевірку на робота.']);
+//        }
 
     }
 }

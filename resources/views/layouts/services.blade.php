@@ -2,8 +2,30 @@
     <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
         <img src="{{ asset('img/city.jpg') }}" style="max-width:100%; height:auto;">
     </a>
-    <ul class="list-group mb-3">
-        <br>
+
+        <div class="card" style="width: 100%; margin-top: 20px;">
+
+                <div style="width: 100%; margin-top: 20px; text-align: center;">
+                    <!-- Minfin.com.ua currency informer 350x120 blue-->
+                    <div id="minfin-informer-m1Fn-currency" style="width: 100%;">
+                        Загружаем <a href="https://minfin.com.ua/currency/" target="_blank">курсы валют</a> от minfin.com.ua
+                    </div>
+                    <script>
+                        var iframe = '<iframe width="100%" height="120" frameborder="0" src="https://informer.minfin.com.ua/gen/course/?color=blue" vspace="0" scrolling="no" hspace="0" allowtransparency="true" style="width:100%;height:120px;overflow:hidden;"></iframe>';
+                        var cl = 'minfin-informer-m1Fn-currency';
+                        document.getElementById(cl).innerHTML = iframe;
+                    </script>
+                    <noscript>
+                        <img src="https://informer.minfin.com.ua/gen/img.png" width="1" height="1" alt="minfin.com.ua: курсы валют" title="Курс валют" border="0" />
+                    </noscript>
+                    <!-- Minfin.com.ua currency informer 350x120 blue-->
+                </div>
+
+        </div>
+
+
+
+    <ul class="list-group mb-3" style="width: 100%; margin-top: 20px;">
         <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
             <p  class="gradient text-opacity-25" id="poslugy">
                 <b>Сервіси</b>
@@ -47,8 +69,8 @@
         </li>
     </ul>
 
-    <ul class="list-group mb-3">
-        <br>
+    <ul class="list-group mb-3" style="width: 100%; margin-top: 20px;">
+
         <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
             <p  class="gradient text-opacity-25" id="poslugy">
                 <b>Про нас</b>

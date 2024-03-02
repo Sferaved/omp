@@ -74,10 +74,13 @@
                                             <input type="email" class="form-control" name="email"
                                                    @isset($params)
                                                    value="{{$params['email']}}"
+                                                   @else
+                                                   value="{{ Auth::user()->email }}"
                                                    @endisset
-                                                   placeholder="myemail@domen" required>
+                                                   placeholder="myemail@domen" readonly>
                                             <label class="form-label" for="email">Email</label>
                                         </div>
+
 
 
                                         <div class="form-outline mb-4">
@@ -95,10 +98,10 @@
                                             </textarea>
                                             <label class="form-label" for="message">Повідомлення</label>
                                         </div>
-                                        <div class="form-outline mb-4">
-                                            <script src="https://www.google.com/recaptcha/api.js"></script>
-                                            <div class="g-recaptcha" data-sitekey="{{ config('app.RECAPTCHA_SITE_KEY') }}"></div>
-                                        </div>
+{{--                                        <div class="form-outline mb-4">--}}
+{{--                                            <script src="https://www.google.com/recaptcha/api.js"></script>--}}
+{{--                                            <div class="g-recaptcha" data-sitekey="{{ config('app.RECAPTCHA_SITE_KEY') }}"></div>--}}
+{{--                                        </div>--}}
 
                                         <!-- Submit button -->
                                         <button type="submit" class="btn btn-primary btn-block mb-4">

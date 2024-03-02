@@ -30,7 +30,7 @@ Route::get('/umovy', function () {
     return view('umovy');
 })->name('umovy');
 
-Route::get('/feedback', function () {
+Route::middleware(['auth'])->get('/feedback', function () {
     return view('feedback');
 })->name('feedback');
 Route::get('/contact', function () {
