@@ -38,8 +38,8 @@
                                 <h5>3. Налаштування даних</h5>
                                 <p class="lead" style="text-align: justify">
                                     Щоб уникнути конфліктів зчитування повідомлень, рекомендується створити окрему поштову скриньку для роботи з програмою або вимкнути автоматичне отримання повідомлень у брокерській програмі на час роботи програми.
-                                    Для підключення до поштового сервера використовується сервер imap і пароль для доступу сторонніх програм. Інструкції для <a href="https://www.mdoffice.com.ua/ua/aMDOFAQ.decl?id=508" target="_blank"> gmail</a>,
-                                    для <a href="https://www.mdoffice.com.ua/ua/aMDOFAQ.decl?id=505" target="_blank">ukrnet</a>
+                                    Для підключення до поштового сервера використовується сервер imap і пароль для доступу сторонніх програм. Інструкції для <a href="https://www.mdoffice.com.ua/ua/aMDOFAQ.decl?id=508" target="_blank" class="lead" style="text-align: justify"> gmail</a>,
+                                    для <a href="https://www.mdoffice.com.ua/ua/aMDOFAQ.decl?id=505" target="_blank" class="lead" style="text-align: justify">ukrnet</a>
                                 </p>
                                 <h5>4. Згода на обробку даних</h5>
                                 <p class="lead" style="text-align: justify">
@@ -52,12 +52,12 @@
                                 </p>
                                 <h5>6. Застосовність законодавства</h5>
                                 <p class="lead" style="text-align: justify">
-                                    Наш додаток дотримується положень Загального регламенту захисту персональних даних <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679">(GDPR)</a> Європейського Союзу щодо збору, використання та обробки особистих даних.
+                                    Наш додаток дотримується положень Загального регламенту захисту персональних даних <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679" class="lead" style="text-align: justify">(GDPR)</a> Європейського Союзу щодо збору, використання та обробки особистих даних.
 
                                 </p>
                                 <h5>7. Ваші права</h5>
                                 <p class="lead" style="text-align: justify">
-                                    Ви маєте право в будь-який час запросити доступ до ваших особистих даних, внести зміни або видалити їх з нашої бази даних. Для цього зв'яжіться з нами за адресою <a href="mailto:sferaved@gmail.com">sferaved@gmail.com</a>
+                                    Ви маєте право в будь-який час запросити доступ до ваших особистих даних, внести зміни або видалити їх з нашої бази даних. Для цього зв'яжіться з нами за адресою <a href="mailto:sferaved@gmail.com" class="lead" style="text-align: justify">sferaved@gmail.com</a>
 .
                                 </p>
                                 <h5>8. Згода та зміни</h5>
@@ -65,7 +65,7 @@
                                     Використовуючи нашу програму, ви погоджуєтесь з умовами нашої політики конфіденційності. Ми залишаємо за собою право вносити зміни до цієї політики, про що ви будете повідомлені.
                                 </p>
                                 <p class="lead" style="text-align: justify">
-                                    Ви маєте право в будь-який час запросити доступ до ваших особистих даних, внести зміни або видалити їх з нашої бази даних. Для цього зв'яжіться з нами за адресою <a href="mailto:sferaved@gmail.com">sferaved@gmail.com</a>
+                                    Ви маєте право в будь-який час запросити доступ до ваших особистих даних, внести зміни або видалити їх з нашої бази даних. Для цього зв'яжіться з нами за адресою <a href="mailto:sferaved@gmail.com" class="lead" style="text-align: justify">sferaved@gmail.com</a>
 .
                                 </p>
                                 <p class="lead" style="text-align: justify">
@@ -76,10 +76,10 @@
                                     Дата набрання чинності: 01/01/2023
                                 </p>
                                 <p class="lead" style="text-align: justify">
-                                    Контактна інформація: <a href="mailto:sferaved@gmail.com">sferaved@gmail.com</a>
+                                    Контактна інформація: <a href="mailto:sferaved@gmail.com" class="lead" style="text-align: justify">sferaved@gmail.com</a>
 
                                 <p class="lead"> Будь ласка, ознайомтесь з
-                                    <a href="{{ route('umovy') }}" target="_blank" >Умовами користування сервісом.</a>
+                                    <a href="{{ route('umovy') }}" target="_blank" class="lead" style="text-align: justify" >Умовами користування сервісом.</a>
                                 </p>
                             </div>
                         </div>
