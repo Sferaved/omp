@@ -398,9 +398,9 @@ img {vertical-align: middle;}
     right: 0;
     font-size: 14px;
     margin: auto;
-    width: 85%;
-    min-width: 320px;
-    max-width: 600px;
+    width: 50%;
+    min-width: 300px;
+    max-width: 400px;
     position: absolute;
     padding: 15px 20px;
     border: 1px solid #383838;
