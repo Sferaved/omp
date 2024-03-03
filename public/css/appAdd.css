@@ -256,11 +256,11 @@ div.btn {
 }
 .olderOne a {
     text-decoration: none;
-    padding: 10px;
+    padding: 5px;
     display: block;
-    line-height: 30px;
+    line-height: 20px;
     color: #3A3A3A;
-    font-family: 'EB Garamond', serif;
+    font-family: Arial, Helvetica, serif;
     font-size: 15px;
 }
 .olderOne a:before {

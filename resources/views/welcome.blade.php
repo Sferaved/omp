@@ -158,10 +158,18 @@
                         </div>
                     </div>
                 </div>
-                <br>
+
+                <div style="width: 100%; margin-top: 20px;">
+                    <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
+                        <p  class="gradient text-opacity-25" id="poslugy">
+                            <b>Новини митного оформлення в Україні</b>
+                        </p>
+                    </a>
+                </div>
+
                 <!--Mdoffice.com.ua -->
                 <iframe
-                    src="https://www.mdoffice.com.ua/ua/MDONewsScript.html?p_days=1" height="300px" class="container-fluid"></iframe>
+                    src="https://www.mdoffice.com.ua/ua/MDONewsScript.html?p_days=2" height="500px" class="container-fluid"></iframe>
                 <!--//Mdoffice.com.ua-->
 
 

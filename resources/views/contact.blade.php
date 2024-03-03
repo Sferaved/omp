@@ -16,7 +16,7 @@
                 <div class="row gx-lg-5 align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0">
 
-                        <h5 class="my-1 display-7 ls-tight gradient" align="left">
+                        <h5 class="my-1 display-7 ls-tight gradient" align="center">
                             Для замовлення консультації митного брокера зверніться за телефонами:
                         </h5>
                         <div class="container-fluid align-items-center">
@@ -50,18 +50,20 @@
                     </div>
 
                     <div class="col-lg-6 mb-5 mb-lg-0">
-                        <img src="{{ asset('img/city.jpg') }}" style="width: 420px; height: auto">
-                        <br> <br>
-{{--                        <div class="card">--}}
-{{--                            <div class="card-body py-5 px-md-5">--}}
-                                <h5 class="my-1 display-7 ls-tight gradient" align="center">
+                        <div class="card">
+
+                            <div class="card-body py-5 px-md-5">
+                                <img src="{{ asset('img/city.jpg') }}" style="width: 100%; margin-top: 20px; text-align: center;">
+                                <h5 class="my-1 display-7 ls-tight gradient" align="center" >
                                     вул.Клочківська буд.192А оф 422 (Бізнес-центр "Місто"), місто Харків
                                 </h5>
-                                <a href="mailto:sferaved@gmail.com" class="my-1 display-7 ls-tight gradient">sferaved@gmail.com</a>
+
+                                <a href="mailto:sferaved@gmail.com" class="my-1  ls-tight gradient"> <h5><b>sferaved@gmail.com</b></h5></a>
 
 
-{{--                            </div>--}}
-{{--                        </div>--}}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
