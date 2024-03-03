@@ -1,19 +1,5 @@
 <footer class="text-muted text-center text-small gradient">
-    <div class="center gradient">
-        <span style="color:black">Сьогодні:</span>
-        <span style="color:black;; font-size:14px;">
-              <script>
-                   document.write(date+" ");
-                   document.write(thismonth+ " "+thisyear+" "+"року"+" — "+ DayofWeek);
-              </script>
-              (<span id="clockdat" style="color:blue;"></span>)
-                    <span>
-                        🌡️
-                        {{\App\Http\Controllers\WeatherController::temp()}}
-                        ℃
-                    </span>
-        </span>
-    </div>
+
     <div style="width: 100%; margin-top: 10px; text-align: center;">
         <!-- Minfin.com.ua currency informer 350x120 blue-->
         <div id="minfin-informer-m1Fn-currency" style="width: 100%;">
@@ -29,14 +15,28 @@
         </noscript>
         <!-- Minfin.com.ua currency informer 350x120 blue-->
     </div>
-
+    <div class="center gradient">
+        <span style="color:black">Сьогодні:</span>
+        <span style="color:black;; font-size:14px;">
+              <script>
+                   document.write(date+" ");
+                   document.write(thismonth+ " "+thisyear+" "+"року"+" — "+ DayofWeek);
+              </script>
+              (<span id="clockdat" style="color:blue;"></span>)
+                    <span>
+                        🌡️
+                        {{\App\Http\Controllers\WeatherController::temp()}}
+                        ℃
+                    </span>
+        </span>
+    </div>
     <p class="mb-1">&copy; 2024 Сучасні послуги митного представника в Україні </p>
     <ul class="list-inline">
         <li class="list-inline-item"><a href="{{route('welcome')}}" target="_blank">Головна</a></li>
         <li class="list-inline-item"><a href="{{ route('gdpr') }}" target="_blank">Конфіденційність</a></li>
         <li class="list-inline-item"><a href="{{ route('umovy') }}" target="_blank">Умови</a></li>
         <li class="list-inline-item"><a href="{{ route('feedback') }}" target="_blank">Підтримка</a></li>
-        <li class="list-inline-item"><a href="{{ route('contact') }}" target="_blank">Контакт</a></li>
+        <li class="list-inline-item"><a href="{{ route('contact') }}" target="_blank">Контакти</a></li>
     </ul>
     <a href="https://www.facebook.com/CpsferaVed"
        target="_blank" title="Сторінка сайту у Facebook" style="text-decoration: none;">

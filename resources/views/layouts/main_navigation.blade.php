@@ -74,6 +74,7 @@
 
                         <div class="container-fluid align-items-center">
                             <div class="row">
+                                @unless(Request::is('contact'))
                                 <span class="col-lg-3 col-sm-3 mb-2 mb-lg-0">
                                   <a class="btn btn-outline-success" href="tel:+380936734488">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-inbound" viewBox="0 0 16 16">
@@ -98,6 +99,7 @@
                                       0679004012
                                    </a>
                                 </span>
+                                @endunless
                                 <span class="col-lg-3 col-sm-3 mb-2 mb-lg-0">
                                     <a   style="width: 200px" href="https://play.google.com/store/apps/details?id=com.myapp.office_mp_2" target="_blank">
                                         <img src="{{ asset('img/google-play-badge.png') }}" style="width: 130px; height: auto; margin-top: -8px"

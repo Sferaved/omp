@@ -103,64 +103,46 @@
     </ul>
 
     <div class="header gradient" >
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">митний брокер</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">митне оформлення</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">таможенный брокер</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">таможенное оформление</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">fedex таможенный брокер</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">dhl митне оформлення</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">митний брокер</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">митне оформлення</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">таможенный брокер</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">таможенное оформление</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">fedex таможенный брокер</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">затаможка</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">dhl митне оформлення</a>
 
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">услуги таможенного брокера</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">md office растаможка</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">консультация таможенного брокера</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">растаможка</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">брокер для растаможки</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">брокер митний</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">брокер по таможенному оформлению</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">брокер таможня</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">затаможка</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">импорт таможенная процедура</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">импортное таможенное оформление</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">брокерские услуги по таможенному оформлению</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">митниця</a>
-            <a  class="borderElement"
-                href="{{route('contact')}}" target="_blank">таможня</a>
-
-
-
-
-
-
-
-
-{{--            <a  class="borderElement"--}}
-{{--                href="{{route('homeMapCombo')}}" target="_blank">Замовлення таксі по мапи</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{ route('callBackForm') }}">--}}
-{{--                Допомога у складний час</a>--}}
-{{--            <a  class="borderElement"--}}
-{{--                href="{{ route('callBackForm') }}">--}}
-{{--                Служба підтримки</a>--}}
-        </div>
-
-
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">услуги таможенного брокера</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">митниця</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">md office растаможка</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">консультация таможенного брокера</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">растаможка</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">брокер для растаможки</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">брокер митний</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">таможня</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">брокер по таможенному оформлению</a>
+        <a  class="borderElement"
+        href="{{route('contact')}}" target="_blank">брокер таможня</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">импорт таможенная процедура</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">импортное таможенное оформление</a>
+        <a  class="borderElement"
+            href="{{route('contact')}}" target="_blank">брокерские услуги по таможенному оформлению</a>
+   </div>
 </div>
