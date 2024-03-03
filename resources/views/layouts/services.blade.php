@@ -50,6 +50,26 @@
                style="text-decoration: none;">З/Д станції</a>
         </li>
     </ul>
+    <ul class="list-group mb-3" style="width: 100%; margin-top: 20px;">
+        <a href="{{route('contact')}}" target="_blank" style="text-decoration: none;">
+            <p  class="gradient text-opacity-25" id="poslugy">
+                <b>Корисні посилання</b>
+            </p>
+        </a>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="https://cabinet.customs.gov.ua/" target="_blank"
+               style="text-decoration: none;">Єдине вікно для міжнародної торгівлі</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="https://customs.gov.ua/" target="_blank"
+               style="text-decoration: none;">Державна Митна Служба</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <a href="https://zakon.rada.gov.ua/laws/main/index" target="_blank"
+               style="text-decoration: none;">Законодавство України</a>
+        </li>
+
+    </ul>
 
     <ul class="list-group mb-3" style="width: 100%; margin-top: 20px;">
 
@@ -78,97 +98,11 @@
 
         <li class="list-group-item d-flex justify-content-between lh-sm">
             <a href="{{route('contact')}}" target="_blank"
-               style="text-decoration: none;">Контакт</a>
+               style="text-decoration: none;">Контакти</a>
         </li>
     </ul>
 
-
-        <div style="width: 100%; margin-top: 20px; text-align: center;">
-            <!-- Minfin.com.ua currency informer 350x120 blue-->
-            <div id="minfin-informer-m1Fn-currency" style="width: 100%;">
-                Загружаем <a href="https://minfin.com.ua/currency/" target="_blank">курсы валют</a> от minfin.com.ua
-            </div>
-            <script>
-                var iframe = '<iframe width="100%" height="120" frameborder="0" src="https://informer.minfin.com.ua/gen/course/?color=blue" vspace="0" scrolling="no" hspace="0" allowtransparency="true" style="width:100%;height:120px;overflow:hidden;"></iframe>';
-                var cl = 'minfin-informer-m1Fn-currency';
-                document.getElementById(cl).innerHTML = iframe;
-            </script>
-            <noscript>
-                <img src="https://informer.minfin.com.ua/gen/img.png" width="1" height="1" alt="minfin.com.ua: курсы валют" title="Курс валют" border="0" />
-            </noscript>
-            <!-- Minfin.com.ua currency informer 350x120 blue-->
-        </div>
-
-
-    <!--                <p  class="gradient text-opacity-25">
-                        <b>Теги</b>
-                    </p>
-                    <div class="container-fluid">
-                        <div class="row">
-                                <div class="borderElement"> такси </div>
-                                <div class="borderElement"> uklon </div>
-                                <div class="borderElement"> болт такси </div>
-                                <div class="borderElement"> уклон такси </div>
-                                <div class="borderElement"> такси болт </div>
-                                <div class="borderElement"> убер </div>
-                                <div class="borderElement"> такси макси </div>
-                                <div class="borderElement"> такси уклон </div>
-                                <div class="borderElement"> 838 такси </div>
-                                <div class="borderElement"> такси 838 </div>
-                                <div class="borderElement"> убер такси </div>
-                                <div class="borderElement"> такси белая церковь </div>
-                                <div class="borderElement"> он такси </div>
-                                <div class="borderElement"> уклон телефон </div>
-                                <div class="borderElement"> номер такси </div>
-                                <div class="borderElement"> bolt такси </div>
-                                <div class="borderElement"> uklon номер телефона </div>
-                                <div class="borderElement"> заказать такси </div>
-                                <div class="borderElement"> такси десятка </div>
-                                <div class="borderElement"> такси болт номер телефона </div>
-                                <div class="borderElement"> такси уклон телефон </div>
-                                <div class="borderElement"> uklon драйвер </div>
-                                <div class="borderElement"> вызвать такси </div>
-                                <div class="borderElement"> такси онлайн </div>
-                                <div class="borderElement"> эконом таксиg </div>
-                                <div class="borderElement"> uklon такси </div>
-                                <div class="borderElement"> такси болт номер </div>
-                                <div class="borderElement"> 292 такси </div>
-                                <div class="borderElement"> такси максим номер </div>
-                                <div class="borderElement"> такси 292 </div>
-                                <div class="borderElement"> служба поддержки болт </div>
-                                <div class="borderElement"> uber такси </div>
-                                <div class="borderElement"> такси убер </div>
-                                <div class="borderElement"> дешевое такси </div>
-                                <div class="borderElement"> болт такси телефон </div>
-                                <div class="borderElement"> 579 такси </div>
-                                <div class="borderElement"> уклон для водителей </div>
-                                <div class="borderElement"> любимое такси  </div>
-                                <div class="borderElement"> таксометр </div>
-                                <div class="borderElement"> служба такси </div>
-                                <div class="borderElement"> желтое такси </div>
-                                <div class="borderElement"> мое такси </div>
-                                <div class="borderElement"> оптима такси </div>
-                                <div class="borderElement"> uklon личный кабинет </div>
-                                <div class="borderElement"> uklon онлайн </div>
-                                <div class="borderElement"> такси эконом </div>
-                                <div class="borderElement"> такси межгород </div>
-                                <div class="borderElement"> экспресс такси </div>
-                                <div class="borderElement"> shark taxi </div>
-                                <div class="borderElement"> номер такси болт </div>
-                                <div class="borderElement"> вызов такси </div>
-                                <div class="borderElement"> самое дешевое такси </div>
-                                <div class="borderElement"> такси оптимальное </div>
-                                <div class="borderElement"> такси uber </div>
-                                <div class="borderElement"> такси заказать </div>
-                                <div class="borderElement"> онлайн такси </div>
-                        </div>
-                   </div>-->
-{{--    <div class="container-fluid" style="margin-top: 10px">--}}
-{{--        <p  class="gradient">--}}
-{{--            <b>Вам також буде цікаво:</b>--}}
-{{--        </p>--}}
-
-        <div class="header gradient" >
+    <div class="header gradient" >
             <a  class="borderElement"
                 href="{{route('contact')}}" target="_blank">митний брокер</a>
             <a  class="borderElement"
@@ -194,9 +128,6 @@
                 href="{{route('contact')}}" target="_blank">брокер для растаможки</a>
             <a  class="borderElement"
                 href="{{route('contact')}}" target="_blank">брокер митний</a>
-
-
-
             <a  class="borderElement"
                 href="{{route('contact')}}" target="_blank">брокер по таможенному оформлению</a>
             <a  class="borderElement"
@@ -209,6 +140,10 @@
                 href="{{route('contact')}}" target="_blank">импортное таможенное оформление</a>
             <a  class="borderElement"
                 href="{{route('contact')}}" target="_blank">брокерские услуги по таможенному оформлению</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">митниця</a>
+            <a  class="borderElement"
+                href="{{route('contact')}}" target="_blank">таможня</a>
 
 
 
@@ -226,5 +161,6 @@
 {{--                href="{{ route('callBackForm') }}">--}}
 {{--                Служба підтримки</a>--}}
         </div>
-{{--    </div>--}}
+
+
 </div>

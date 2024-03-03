@@ -169,7 +169,7 @@
 
                 <!--Mdoffice.com.ua -->
                 <iframe
-                    src="https://www.mdoffice.com.ua/ua/MDONewsScript.html?p_days=2" height="500px" class="container-fluid"></iframe>
+                    src="https://www.mdoffice.com.ua/ua/MDONewsScript.html?p_days=2" height="470px" class="container-fluid"></iframe>
                 <!--//Mdoffice.com.ua-->
 
 
