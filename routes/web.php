@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');;
 
-Route::get('/gdpr', function () {
+Route::get('/gdpr-new', function () {
     return view('gdpr');
 })->name('gdpr');
 
