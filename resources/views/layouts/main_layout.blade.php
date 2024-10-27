@@ -3,6 +3,16 @@
 <html lang="uk">
 <head>
     <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11157266318"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11157266318');
+    </script>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQ309LSEVW"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -15,7 +25,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all" />
-    <link rel="canonical" href="https://m.easy-order-taxi.site/" />
+    <link rel="canonical" href="https://omp.net.ua/" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="facebook-domain-verification" content="p8dbwrrn8d9oraatsor7slc8pql5dv" />
