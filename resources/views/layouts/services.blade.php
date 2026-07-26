@@ -38,8 +38,8 @@
                style="text-decoration: none;">Програми MDOffice</a>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-sm">
-            <a href="{{route('auto')}}" target="_blank"
-               style="text-decoration: none;">Розрахунок авто</a>
+            <a href="{{ route('mddocimport') }}"
+               style="text-decoration: none;"><b>ПЗ MDDocImport · AI</b></a>
         </li>
         <li class="list-group-item d-flex justify-content-between lh-sm">
             <a href="{{route('map')}}" target="_blank"

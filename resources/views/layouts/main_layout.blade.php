@@ -29,8 +29,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="facebook-domain-verification" content="p8dbwrrn8d9oraatsor7slc8pql5dv" />
-   <title>Офіс митного представинка</title>
-    <meta name="description" content="Швидка та професійна митна підтримка для вашого бізнесу в Україні. Довірте нашим експертам оформлення митних документів та вантажів &#128230. Оптимізація митних процедур &#128193 та консультації з питань митного регулювання &#128218. Надійний партнер у всіх питаннях з митної справи &#128104. Співпраця з нами - це шлях до ефективного митного логістичного рішення &#128188 для вашого бізнесу в Україні.">
+   <title>@yield('title', 'Офіс митного представника')</title>
+    <meta name="description" content="@yield('meta_description', 'Швидка та професійна митна підтримка для вашого бізнесу в Україні. MDDocImport з AI-помічником: підготовка документів і підказки кодів УКТ ЗЕД. Оформлення митних документів та вантажів.')">
 
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
@@ -112,6 +112,7 @@
     <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/base/jquery-ui.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/appAdd.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/omp-wow.css') }}" rel="stylesheet">
     <link href="{{ asset('css/auto_calc_cost.css') }}" rel="stylesheet">
     <link href="{{ asset('css/uktved.css') }}" rel="stylesheet">
 </head>
