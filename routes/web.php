@@ -22,12 +22,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/luna', function () {
-    return response()->file(public_path('luna/index.html'), [
-        'Content-Type' => 'text/html; charset=UTF-8',
-    ]);
-})->name('luna');
-
 Route::get('/mddocimport', function () {
     return view('mddocimport');
 })->name('mddocimport');

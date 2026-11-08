@@ -100,10 +100,6 @@
             <a href="{{route('contact')}}" target="_blank"
                style="text-decoration: none;">Контакти</a>
         </li>
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-            <a href="{{ route('luna') }}"
-               style="text-decoration: none;">Луна · ода дощу</a>
-        </li>
     </ul>
 
     <div class="header gradient" >

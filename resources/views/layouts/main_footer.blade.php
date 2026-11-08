@@ -37,7 +37,6 @@
         <li class="list-inline-item"><a href="{{ route('umovy') }}" target="_blank">Умови</a></li>
         <li class="list-inline-item"><a href="{{ route('feedback') }}" target="_blank">Підтримка</a></li>
         <li class="list-inline-item"><a href="{{ route('contact') }}" target="_blank">Контакти</a></li>
-        <li class="list-inline-item"><a href="{{ route('luna') }}">Луна · ода дощу</a></li>
     </ul>
     <a href="https://www.facebook.com/CpsferaVed"
        target="_blank" title="Сторінка сайту у Facebook" style="text-decoration: none;">
