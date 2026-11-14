@@ -26,6 +26,27 @@ Route::get('/mddocimport', function () {
     return view('mddocimport');
 })->name('mddocimport');
 
+// Telegram mini-app pages live under Access (/md-access/…).
+// Old or mistyped menu URLs without the prefix used to hit Laravel 404 and look “hung”
+// with no daybar chrome. Keep query (?t=…) so the board token survives.
+Route::get('/brokers', function () {
+    $target = 'https://omp.net.ua/md-access/brokers';
+    $query = request()->getQueryString();
+    if ($query) {
+        $target .= '?' . $query;
+    }
+    return redirect()->away($target, 302);
+});
+
+Route::get('/board', function () {
+    $target = 'https://omp.net.ua/md-access/board';
+    $query = request()->getQueryString();
+    if ($query) {
+        $target .= '?' . $query;
+    }
+    return redirect()->away($target, 302);
+});
+
 Route::get('/gdpr-new', function () {
     return view('gdpr');
 })->name('gdpr');
