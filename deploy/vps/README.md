@@ -30,10 +30,17 @@ Call it after every publish (see patch for `MDDocImport/scripts/publish-omp-down
 Env vars (required for Telegram report):
 
 - `TELEGRAM_BOT_TOKEN` — Office bot token
-- `TELEGRAM_CHAT_IDS` — comma-separated chat ids (ops: `120352595,474748019`)
+- `TELEGRAM_CHAT_IDS` — Andrii only (`120352595`). Do not add Any / other chats.
 - `OMP_DOWNLOAD_DIR` — optional, default `/var/www/downloads/mddocimport`
 
-Safe cleanup: `docker system prune -af` (no `--volumes`), dangling volumes excluding known app volumes, apt autoclean/autoremove, journal 7d, tmp >7d, mddocimport prune.
+Cleanup reports: Telegram only (no email). Safe cleanup: `docker system prune -af` (no `--volumes`), dangling volumes excluding known app volumes, apt autoclean/autoremove, journal 7d, tmp >7d, mddocimport prune.
+
+## Daily backups (email → Andrii only)
+
+- Cron: `/etc/cron.d/office-backup` — `0 4 * * *`
+- Script: `/usr/local/bin/office-backup.sh`
+- Mail helper: `/usr/local/bin/send-backup-mail.php` → `andrey18051@gmail.com` only (no Any)
+- No Telegram for backups currently; if added later, Andrii only.
 
 ## Windows publish SSH (`omp-prod`)
 
