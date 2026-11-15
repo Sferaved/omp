@@ -1,0 +1,28 @@
+--- a/scripts/publish-omp-download.ps1
++++ b/scripts/publish-omp-download.ps1
+@@ -3,9 +3,10 @@
+   Uploads MDDocImport Setup.exe to omp.net.ua public downloads folder.
+ 
+ .DESCRIPTION
+-  Host path on omp-prod (51.83.162.226): /var/www/downloads/mddocimport
+-  Mounted into omp container as public/downloads/mddocimport
++  Host path on omp-prod (185.251.25.179): /var/www/downloads/mddocimport
++  Served by host nginx location /downloads/ (not via omp container mount).
++  After upload, previous versioned Setup/ZIP files are pruned (keep latest only).
+ 
+   Stable marketing URL:
+     https://omp.net.ua/downloads/mddocimport/MDDocImport-Setup.exe
+@@ -292,6 +293,13 @@
+ if ($clientSetupUrl) { $chmodTargets += " '$remoteClientSetup' '$remoteClientSetupLatest'" }
+ ssh -o BatchMode=yes $cfg.SshHost "chmod 644 $chmodTargets 2>/dev/null || true"
+ 
++# Drop previous version files — keep only artifacts referenced by latest.json
++Write-Host "Pruning previous MDDocImport downloads (keep latest only)..." -ForegroundColor Cyan
++ssh -o BatchMode=yes $cfg.SshHost "/usr/local/bin/omp-mddocimport-prune.sh"
++if ($LASTEXITCODE -ne 0) {
++    Write-Host "WARNING: prune failed on $($cfg.SshHost) (uploads already published)" -ForegroundColor Yellow
++}
++
+ Write-Host "Published:" -ForegroundColor Green
+ Write-Host "  $($cfg.PublicBase)/$latestName" -ForegroundColor Green
+ Write-Host "  $($cfg.PublicBase)/$versionedName" -ForegroundColor Green

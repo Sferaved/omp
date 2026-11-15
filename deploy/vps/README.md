@@ -1,0 +1,49 @@
+# OMP VPS (omp.net.ua) — downloads + cleanup
+
+Host: `185.251.25.179` (Cloudflare → nginx → omp container).
+
+## MDDocImport public downloads
+
+Artifacts live on the **host** at `/var/www/downloads/mddocimport` (publish script SCPs here).
+
+Host nginx serves them directly:
+
+- `https://omp.net.ua/downloads/mddocimport/latest.json`
+- `https://omp.net.ua/downloads/mddocimport/MDDocImport-Setup.exe`
+
+See `omp-proxy.conf` (`location /downloads/` → `alias /var/www/downloads/`).
+
+Do **not** rely on a bind-mount into the `omp` container for this path.
+
+## Keep-latest prune
+
+`/usr/local/bin/omp-mddocimport-prune.sh` deletes old `MDDocImport*` Setup/ZIP files not referenced by `latest.json`.
+
+Call it after every publish (see patch for `MDDocImport/scripts/publish-omp-download.ps1`).
+
+## Weekly cleanup + Office Telegram
+
+- Cron: `/etc/cron.d/omp-vps-cleanup` — Sunday 04:15 UTC
+- Script: `/usr/local/bin/omp-vps-cleanup.sh`
+- Env: `/etc/omp-vps-cleanup.env` from `omp-vps-cleanup.env.example`
+
+Env vars (required for Telegram report):
+
+- `TELEGRAM_BOT_TOKEN` — Office bot token
+- `TELEGRAM_CHAT_IDS` — comma-separated chat ids (ops: `120352595,474748019`)
+- `OMP_DOWNLOAD_DIR` — optional, default `/var/www/downloads/mddocimport`
+
+Safe cleanup: `docker system prune -af` (no `--volumes`), dangling volumes excluding known app volumes, apt autoclean/autoremove, journal 7d, tmp >7d, mddocimport prune.
+
+## Windows publish SSH (`omp-prod`)
+
+Update `~/.ssh/config` HostName to the new VPS:
+
+```
+Host omp-prod
+  HostName 185.251.25.179
+  User ubuntu
+  IdentityFile ~/.ssh/id_taxi_prod
+```
+
+Install the public key into `/home/ubuntu/.ssh/authorized_keys` on the VPS (BatchMode SCP requires key auth). Rotate the root password after setup.
