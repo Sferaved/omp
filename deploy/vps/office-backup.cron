@@ -1,0 +1,1 @@
+0 4 * * * root /usr/local/bin/office-backup.sh >> /var/log/office-backup.log 2>&1

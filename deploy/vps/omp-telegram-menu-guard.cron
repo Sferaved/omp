@@ -1,0 +1,3 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+* * * * * root /usr/local/bin/omp-telegram-menu-guard.sh >> /var/log/omp-telegram-menu-guard.log 2>&1
