@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Office bot webhook: /start restores menu «Процеси» + reply keyboard. No deleteMessage.
+"""Office bot webhook: /start restores menu «Процеси» + reply/inline board buttons.
 
-Distinct boards (same as MDDocImport OmpBoardRelay / BlueProcessMenu):
-- Menu «Процеси» → live trycloudflare /board when it answers; else durable /md-access/brokers
-- Keyboard «Процеси · OMP» → /md-access/board (митниця / phone)
-- Keyboard «МДдок імпорт» → /md-access/brokers (зріз брокерів / broker-phone)
+Distinct boards (MDDocImport OmpBoardRelay / BlueProcessMenu):
+- Menu «Процеси» → living trycloudflare /board if it answers; else /md-access/brokers
+- «Процеси · OMP» → /md-access/board (митниця)
+- «МДдок імпорт» → /md-access/brokers (зріз)
+
+Always remove_keyboard before re-sending reply web_app (text-only leftovers break taps).
+Also send InlineKeyboard url+web_app fallback so buttons open even if reply web_app fails.
 """
 from __future__ import annotations
 import json, os, time, urllib.request
@@ -52,7 +55,6 @@ def is_quick_tunnel(url: str) -> bool:
     return host.endswith(".trycloudflare.com")
 
 def menu_page(bot: str, chat_id: int, brokers: str) -> str:
-    """Prefer a living leader tunnel; otherwise durable brokers scan/slice host."""
     try:
         menu = (api(bot, f"getChatMenuButton?chat_id={chat_id}").get("result") or {})
     except Exception:
@@ -71,7 +73,6 @@ def restore(chat_id: int, force: bool = False) -> str:
         return "ignored"
     if not board_t:
         return "no-token"
-    # rate limit non-force restores
     state = {}
     if LAST.exists():
         try:
@@ -95,25 +96,68 @@ def restore(chat_id: int, force: bool = False) -> str:
             "web_app": {"url": processes},
         },
     })
-    keyboard = {
-        "keyboard": [[
-            {"text": "Процеси · OMP", "style": "primary", "web_app": {"url": customs}},
-            {"text": "МДдок імпорт", "style": "success", "web_app": {"url": brokers}},
-        ]],
-        "resize_keyboard": True,
-        "is_persistent": True,
-    }
-    text = (
-        "Кнопки дошки: «Процеси» — скан брокерів, "
-        "«Процеси · OMP» — митниця, «МДдок імпорт» — зріз брокерів.\n"
-        "Якщо зникли знову — надішліть /start (не чистіть історію чату)."
-    )
+
+    # Drop broken / text-only keyboards before publishing web_app row.
     api(bot, "sendMessage", {
         "chat_id": chat_id,
-        "text": text,
+        "text": "Оновлюю кнопки дошки…",
         "disable_notification": True,
-        "reply_markup": keyboard,
+        "reply_markup": {"remove_keyboard": True},
     })
+
+    # Reply web_app — no style field (clients have rejected/ignored styled rows).
+    api(bot, "sendMessage", {
+        "chat_id": chat_id,
+        "text": (
+            "Кнопки дошки:\n"
+            "• «Процеси · OMP» — митниця (/md-access/board)\n"
+            "• «МДдок імпорт» — зріз брокерів (/md-access/brokers)\n"
+            "Меню «Процеси» — скан брокерів.\n"
+            "Якщо нижній ряд знову зник — /start (не чистіть історію)."
+        ),
+        "disable_notification": True,
+        "reply_markup": {
+            "keyboard": [[
+                {"text": "Процеси · OMP", "web_app": {"url": customs}},
+                {"text": "МДдок імпорт", "web_app": {"url": brokers}},
+            ]],
+            "resize_keyboard": True,
+            "is_persistent": True,
+        },
+    })
+
+    # Inline fallback — url buttons always open; web_app opens mini-app.
+    inline = api(bot, "sendMessage", {
+        "chat_id": chat_id,
+        "text": "Запасні кнопки (якщо нижній ряд не відкриває):",
+        "disable_notification": True,
+        "reply_markup": {
+            "inline_keyboard": [
+                [
+                    {"text": "Процеси · OMP", "url": customs},
+                    {"text": "МДдок імпорт", "url": brokers},
+                ],
+                [
+                    {"text": "OMP (app)", "web_app": {"url": customs}},
+                    {"text": "МДдок (app)", "web_app": {"url": brokers}},
+                ],
+            ]
+        },
+    })
+    # Persist only after Telegram accepted inline markup with both URLs.
+    markup = ((inline.get("result") or {}).get("reply_markup") or {})
+    rows = markup.get("inline_keyboard") or []
+    urls = []
+    for row in rows:
+        for btn in row:
+            if "url" in btn:
+                urls.append(btn["url"])
+            wa = btn.get("web_app") or {}
+            if wa.get("url"):
+                urls.append(wa["url"])
+    if not any("/md-access/board?" in u for u in urls) or not any("/md-access/brokers?" in u for u in urls):
+        raise RuntimeError("inline keyboard missing distinct board/brokers urls: " + json.dumps(urls))
+
     state[key] = now
     LAST.write_text(json.dumps(state))
     return "ok"

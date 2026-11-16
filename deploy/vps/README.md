@@ -70,7 +70,8 @@ Distinct boards (matches MDDocImport `OmpBoardRelay` / `BlueProcessMenu`):
   - Keeps label **Процеси**; does **not** overwrite a living trycloudflare menu URL
   - If menu is missing/dead/wrong → durable `/md-access/brokers?t=…`
 - Webhook: `omp-telegram-webhook.service` on `127.0.0.1:8791`, nginx `location /telegram-office-hook/`
-  - `/start` restores menu + bottom ReplyKeyboardMarkup with the three distinct URLs above
+  - `/start` → `remove_keyboard`, then ReplyKeyboardMarkup web_app (board vs brokers; no `style`), then InlineKeyboard url+web_app fallback
+  - Inline markup is verified to contain both `/md-access/board` and `/md-access/brokers` before restore is marked ok
   - **Never** `deleteMessage` on the keyboard message (Telegram drops reply keyboard)
 - Clear chat history also removes reply keyboard — user should `/start` again
 - Director Windows `BlueProcessMenu` spam/wrong label: see `patches/MDDocImport-blue-menu-spam-fix.md`
