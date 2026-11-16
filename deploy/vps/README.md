@@ -58,20 +58,13 @@ Install the public key into `/home/ubuntu/.ssh/authorized_keys` on the VPS (Batc
 
 ## Office Telegram menu + keyboard (durable)
 
-Distinct boards (matches MDDocImport `OmpBoardRelay` / `BlueProcessMenu`):
+CTTF-43: bottom keyboard is restored **only** by Office bot commands (`/start`, `/buttons`) on the VPS — not by MDDocImport PCs.
 
-| Button | Target |
-|--------|--------|
-| Menu **Процеси** | `broker_board_source.page` living `*.trycloudflare.com/board` (leader scan); else durable `/md-access/brokers?t=…` |
-| Keyboard **Процеси · OMP** | `/md-access/board?t=…` (митниця / phone) |
-| Keyboard **МДдок імпорт** | `/md-access/brokers?t=…` (зріз брокерів / broker-phone) |
+| Control | Behavior |
+|--------|----------|
+| Menu **Процеси** | Living `broker_board_source` trycloudflare `/board`; `/start` falls back to `/md-access/brokers` if tunnel dead |
+| `/start` / `/buttons` | Quiet `sendMessage` `"."` + ReplyKeyboard web_app: OMP→`/board`, МДдок→`/brokers` (deduped stamp) |
+| Menu guard cron | **setChatMenuButton only** — promotes living tunnel; never `sendMessage`; never force-brokers downgrade |
 
-- Menu guard: `/usr/local/bin/omp-telegram-menu-guard.sh` + `/etc/cron.d/omp-telegram-menu-guard` (every minute)
-  - Reads Access `broker_board_source` each minute; promotes living trycloudflare `/board`
-  - Only if tunnel dead → durable `/md-access/brokers?t=…`
-- Webhook: `omp-telegram-webhook.service` on `127.0.0.1:8791`, nginx `location /telegram-office-hook/`
-  - `/start` → `remove_keyboard`, then ReplyKeyboardMarkup web_app (board vs brokers; no `style`), then InlineKeyboard url+web_app fallback
-  - Inline markup is verified to contain both `/md-access/board` and `/md-access/brokers` before restore is marked ok
-  - **Never** `deleteMessage` on the keyboard message (Telegram drops reply keyboard)
-- Clear chat history also removes reply keyboard — user should `/start` again
-- Director Windows `BlueProcessMenu` spam/wrong label: see `patches/MDDocImport-blue-menu-spam-fix.md`
+- Webhook: `omp-telegram-webhook.service` `127.0.0.1:8791`, nginx `/telegram-office-hook/`
+- **Never** chatty «Кнопки дошки» loops; **never** `deleteMessage` on keyboard messages

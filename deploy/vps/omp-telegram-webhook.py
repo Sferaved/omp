@@ -1,31 +1,39 @@
 #!/usr/bin/env python3
-"""Office bot webhook: /start restores menu «Процеси» + reply/inline board buttons.
+"""Office bot: /start and /buttons silently restore board ReplyKeyboard.
 
-Distinct boards (MDDocImport OmpBoardRelay / BlueProcessMenu):
-- Menu «Процеси» → living trycloudflare /board if it answers; else /md-access/brokers
-- «Процеси · OMP» → /md-access/board (митниця)
-- «МДдок імпорт» → /md-access/brokers (зріз)
-
-Always remove_keyboard before re-sending reply web_app (text-only leftovers break taps).
-Also send InlineKeyboard url+web_app fallback so buttons open even if reply web_app fails.
+- Commands only (/start, /buttons, /keyboard) — never on arbitrary chat text.
+- One quiet sendMessage with reply_markup (text "." ); no «Кнопки дошки».
+- Dedupe stamp per chat+markup; /start force-resends keyboard once.
+- Menu «Процеси»: living broker_board_source trycloudflare /board; else /md-access/brokers.
+- No remove_keyboard, no inline spam, no loops.
 """
 from __future__ import annotations
-import json, os, time, urllib.request
+
+import json
+import os
+import subprocess
+import time
+import urllib.error
+import urllib.request
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
 ENV = Path("/etc/omp-vps-cleanup.env")
-LAST = Path("/var/lib/omp-telegram-webhook/last-restore.json")
-LAST.parent.mkdir(parents=True, exist_ok=True)
+STATE_DIR = Path("/var/lib/omp-telegram-webhook")
+STATE_DIR.mkdir(parents=True, exist_ok=True)
+LAST = STATE_DIR / "last-command.json"
+STAMP = STATE_DIR / "quiet-keyboard.stamp"
 
-def load_env():
-    out = {}
+
+def load_env() -> dict[str, str]:
+    out: dict[str, str] = {}
     for line in ENV.read_text().splitlines():
         if "=" in line and not line.strip().startswith("#"):
             k, v = line.split("=", 1)
             out[k.strip()] = v.strip()
     return out
+
 
 def api(bot: str, method: str, payload: dict | None = None):
     url = f"https://api.telegram.org/bot{bot}/{method}"
@@ -39,153 +47,149 @@ def api(bot: str, method: str, payload: dict | None = None):
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.load(r)
 
+
 def page_answers(url: str) -> bool:
     try:
-        req = urllib.request.Request(url, method="GET")
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 OfficeBotMenu"})
         with urllib.request.urlopen(req, timeout=12) as r:
+            body = r.read(500)
+            if b"Cloudflare Tunnel error" in body or b"Error 1033" in body:
+                return False
             return 200 <= r.status < 300
     except Exception:
         return False
 
+
 def is_quick_tunnel(url: str) -> bool:
     try:
-        host = urlparse(url).hostname or ""
+        return (urlparse(url).hostname or "").endswith(".trycloudflare.com")
     except Exception:
         return False
-    return host.endswith(".trycloudflare.com")
+
 
 def leader_board_page() -> str:
-    """Broker leader RegisterBrokerPage URL from Access broker_board_source."""
     try:
-        import subprocess
         conn = subprocess.check_output(
             ["docker", "exec", "md-access-api", "printenv", "ConnectionStrings__Default"],
             text=True,
         ).strip()
         parts = {k.strip(): v.strip() for p in conn.split(";") if "=" in p for k, v in [p.split("=", 1)]}
-        page = subprocess.check_output(
+        return subprocess.check_output(
             [
-                "docker", "exec", "-e", f"PGPASSWORD={parts['Password']}", "md-access-db",
-                "psql", "-U", parts["Username"], "-d", parts["Database"], "-Atc",
+                "docker",
+                "exec",
+                "-e",
+                f"PGPASSWORD={parts['Password']}",
+                "md-access-db",
+                "psql",
+                "-U",
+                parts["Username"],
+                "-d",
+                parts["Database"],
+                "-Atc",
                 "SELECT page FROM broker_board_source WHERE id=1;",
             ],
             text=True,
         ).strip()
-        return page
     except Exception:
         return ""
 
-def menu_page(bot: str, chat_id: int, brokers: str) -> str:
-    """Процеси = living trycloudflare leader /board; omp /brokers only if tunnel dead."""
+
+def resolve_menu_url(brokers: str) -> str:
     leader = leader_board_page()
     if leader and is_quick_tunnel(leader) and page_answers(leader):
         return leader
-    try:
-        menu = (api(bot, f"getChatMenuButton?chat_id={chat_id}").get("result") or {})
-    except Exception:
-        menu = {}
-    current = ((menu.get("web_app") or {}).get("url") or "").strip()
-    if is_quick_tunnel(current) and page_answers(current):
-        return current
     return brokers
 
-def restore(chat_id: int, force: bool = False) -> str:
+
+def keyboard_markup(board: str, brokers: str) -> dict:
+    return {
+        "keyboard": [
+            [
+                {"text": "Процеси · OMP", "web_app": {"url": board}},
+                {"text": "МДдок імпорт", "web_app": {"url": brokers}},
+            ]
+        ],
+        "resize_keyboard": True,
+        "is_persistent": True,
+    }
+
+
+def stamp_key(board: str, brokers: str) -> str:
+    return f"{board}|{brokers}"
+
+
+def load_json(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text())
+    except Exception:
+        return {}
+
+
+def restore(chat_id: int, force: bool) -> str:
     env = load_env()
     bot = env["TELEGRAM_BOT_TOKEN"]
-    board_t = (env.get("BOARD_READ_TOKEN") or "").strip()
+    token = (env.get("BOARD_READ_TOKEN") or "").strip()
     allowed = {c.strip() for c in env.get("TELEGRAM_CHAT_IDS", "").split(",") if c.strip()}
     if str(chat_id) not in allowed and str(chat_id) != "120352595":
         return "ignored"
-    if not board_t:
+    if not token:
         return "no-token"
-    state = {}
-    if LAST.exists():
-        try:
-            state = json.loads(LAST.read_text())
-        except Exception:
-            state = {}
+
+    # Rate-limit non-force (e.g. double-tap /buttons)
+    state = load_json(LAST)
     key = str(chat_id)
     now = time.time()
-    if not force and now - float(state.get(key, 0)) < 30:
+    if not force and now - float(state.get(key, 0)) < 15:
         return "rate"
 
-    brokers = f"https://omp.net.ua/md-access/brokers?t={board_t}"
-    customs = f"https://omp.net.ua/md-access/board?t={board_t}"
-    processes = menu_page(bot, chat_id, brokers)
+    brokers = f"https://omp.net.ua/md-access/brokers?t={token}"
+    board = f"https://omp.net.ua/md-access/board?t={token}"
+    processes = resolve_menu_url(brokers)
 
-    api(bot, "setChatMenuButton", {
-        "chat_id": chat_id,
-        "menu_button": {
-            "type": "web_app",
-            "text": "Процеси",
-            "web_app": {"url": processes},
+    # Menu only — no chat text
+    api(
+        bot,
+        "setChatMenuButton",
+        {
+            "chat_id": chat_id,
+            "menu_button": {
+                "type": "web_app",
+                "text": "Процеси",
+                "web_app": {"url": processes},
+            },
         },
-    })
+    )
 
-    # Drop broken / text-only keyboards before publishing web_app row.
-    api(bot, "sendMessage", {
-        "chat_id": chat_id,
-        "text": "Оновлюю кнопки дошки…",
-        "disable_notification": True,
-        "reply_markup": {"remove_keyboard": True},
-    })
+    marker = stamp_key(board, brokers)
+    stamps = load_json(STAMP)
+    if not force and stamps.get(key) == marker:
+        state[key] = now
+        LAST.write_text(json.dumps(state))
+        return "keyboard-cached"
 
-    # Reply web_app — no style field (clients have rejected/ignored styled rows).
-    api(bot, "sendMessage", {
-        "chat_id": chat_id,
-        "text": (
-            "Кнопки дошки:\n"
-            "• «Процеси · OMP» — митниця (/md-access/board)\n"
-            "• «МДдок імпорт» — зріз брокерів (/md-access/brokers)\n"
-            "Меню «Процеси» — скан брокерів.\n"
-            "Якщо нижній ряд знову зник — /start (не чистіть історію)."
-        ),
-        "disable_notification": True,
-        "reply_markup": {
-            "keyboard": [[
-                {"text": "Процеси · OMP", "web_app": {"url": customs}},
-                {"text": "МДдок імпорт", "web_app": {"url": brokers}},
-            ]],
-            "resize_keyboard": True,
-            "is_persistent": True,
+    # Silent keyboard attach (Telegram requires a message body)
+    api(
+        bot,
+        "sendMessage",
+        {
+            "chat_id": chat_id,
+            "text": ".",
+            "disable_notification": True,
+            "reply_markup": keyboard_markup(board, brokers),
         },
-    })
-
-    # Inline fallback — url buttons always open; web_app opens mini-app.
-    inline = api(bot, "sendMessage", {
-        "chat_id": chat_id,
-        "text": "Запасні кнопки (якщо нижній ряд не відкриває):",
-        "disable_notification": True,
-        "reply_markup": {
-            "inline_keyboard": [
-                [
-                    {"text": "Процеси · OMP", "url": customs},
-                    {"text": "МДдок імпорт", "url": brokers},
-                ],
-                [
-                    {"text": "OMP (app)", "web_app": {"url": customs}},
-                    {"text": "МДдок (app)", "web_app": {"url": brokers}},
-                ],
-            ]
-        },
-    })
-    # Persist only after Telegram accepted inline markup with both URLs.
-    markup = ((inline.get("result") or {}).get("reply_markup") or {})
-    rows = markup.get("inline_keyboard") or []
-    urls = []
-    for row in rows:
-        for btn in row:
-            if "url" in btn:
-                urls.append(btn["url"])
-            wa = btn.get("web_app") or {}
-            if wa.get("url"):
-                urls.append(wa["url"])
-    if not any("/md-access/board?" in u for u in urls) or not any("/md-access/brokers?" in u for u in urls):
-        raise RuntimeError("inline keyboard missing distinct board/brokers urls: " + json.dumps(urls))
-
+    )
+    stamps[key] = marker
+    STAMP.write_text(json.dumps(stamps))
     state[key] = now
     LAST.write_text(json.dumps(state))
     return "ok"
+
+
+COMMANDS = {"/start", "/buttons", "/keyboard", "кнопки", "Кнопки"}
+
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
@@ -194,25 +198,37 @@ class H(BaseHTTPRequestHandler):
     def do_POST(self):
         secret = Path("/etc/omp-telegram-webhook.secret").read_text().strip()
         if self.path.rstrip("/") != f"/telegram-office-hook/{secret}":
-            self.send_response(404); self.end_headers(); return
+            self.send_response(404)
+            self.end_headers()
+            return
         length = int(self.headers.get("Content-Length") or 0)
         raw = self.rfile.read(length) if length else b"{}"
         try:
             update = json.loads(raw.decode("utf-8"))
         except Exception:
-            self.send_response(200); self.end_headers(); self.wfile.write(b"ok"); return
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"ok")
+            return
         msg = update.get("message") or update.get("edited_message") or {}
         chat = (msg.get("chat") or {}).get("id")
         text = (msg.get("text") or "").strip()
-        if chat and (text.startswith("/start") or text in ("/keyboard", "/buttons", "кнопки", "Кнопки")):
+        # Only explicit commands — never every message (avoids loops)
+        cmd = text.split("@", 1)[0].split(" ", 1)[0] if text else ""
+        if chat and (cmd in COMMANDS or text in COMMANDS):
             try:
-                restore(int(chat), force=text.startswith("/start"))
+                restore(int(chat), force=cmd == "/start" or text.startswith("/start"))
             except Exception as e:
                 Path("/var/log/omp-telegram-webhook.err").write_text(str(e))
-        self.send_response(200); self.end_headers(); self.wfile.write(b"ok")
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"ok")
 
     def do_GET(self):
-        self.send_response(200); self.end_headers(); self.wfile.write(b"omp telegram webhook\n")
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"omp telegram webhook silent\n")
+
 
 if __name__ == "__main__":
     HTTPServer(("127.0.0.1", 8791), H).serve_forever()
