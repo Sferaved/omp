@@ -62,13 +62,13 @@ Distinct boards (matches MDDocImport `OmpBoardRelay` / `BlueProcessMenu`):
 
 | Button | Target |
 |--------|--------|
-| Menu **Процеси** | Live leader `*.trycloudflare.com/board` when it answers; else durable `/md-access/brokers?t=…` |
+| Menu **Процеси** | `broker_board_source.page` living `*.trycloudflare.com/board` (leader scan); else durable `/md-access/brokers?t=…` |
 | Keyboard **Процеси · OMP** | `/md-access/board?t=…` (митниця / phone) |
 | Keyboard **МДдок імпорт** | `/md-access/brokers?t=…` (зріз брокерів / broker-phone) |
 
 - Menu guard: `/usr/local/bin/omp-telegram-menu-guard.sh` + `/etc/cron.d/omp-telegram-menu-guard` (every minute)
-  - Keeps label **Процеси**; does **not** overwrite a living trycloudflare menu URL
-  - If menu is missing/dead/wrong → durable `/md-access/brokers?t=…`
+  - Reads Access `broker_board_source` each minute; promotes living trycloudflare `/board`
+  - Only if tunnel dead → durable `/md-access/brokers?t=…`
 - Webhook: `omp-telegram-webhook.service` on `127.0.0.1:8791`, nginx `location /telegram-office-hook/`
   - `/start` → `remove_keyboard`, then ReplyKeyboardMarkup web_app (board vs brokers; no `style`), then InlineKeyboard url+web_app fallback
   - Inline markup is verified to contain both `/md-access/board` and `/md-access/brokers` before restore is marked ok

@@ -54,7 +54,32 @@ def is_quick_tunnel(url: str) -> bool:
         return False
     return host.endswith(".trycloudflare.com")
 
+def leader_board_page() -> str:
+    """Broker leader RegisterBrokerPage URL from Access broker_board_source."""
+    try:
+        import subprocess
+        conn = subprocess.check_output(
+            ["docker", "exec", "md-access-api", "printenv", "ConnectionStrings__Default"],
+            text=True,
+        ).strip()
+        parts = {k.strip(): v.strip() for p in conn.split(";") if "=" in p for k, v in [p.split("=", 1)]}
+        page = subprocess.check_output(
+            [
+                "docker", "exec", "-e", f"PGPASSWORD={parts['Password']}", "md-access-db",
+                "psql", "-U", parts["Username"], "-d", parts["Database"], "-Atc",
+                "SELECT page FROM broker_board_source WHERE id=1;",
+            ],
+            text=True,
+        ).strip()
+        return page
+    except Exception:
+        return ""
+
 def menu_page(bot: str, chat_id: int, brokers: str) -> str:
+    """Процеси = living trycloudflare leader /board; omp /brokers only if tunnel dead."""
+    leader = leader_board_page()
+    if leader and is_quick_tunnel(leader) and page_answers(leader):
+        return leader
     try:
         menu = (api(bot, f"getChatMenuButton?chat_id={chat_id}").get("result") or {})
     except Exception:
