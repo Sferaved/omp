@@ -1,5 +1,6 @@
 #!/bin/bash
 # Keep Office bot chat-menu label «Процеси» for Andrii.
+# Preserves a living trycloudflare leader /board; otherwise durable /md-access/brokers.
 # Does NOT send chat messages (avoids spam + deleteMessage keyboard wipe).
 set -euo pipefail
 ENV=/etc/omp-vps-cleanup.env
@@ -20,25 +21,56 @@ def post(url, payload):
     req=urllib.request.Request(url, data=data, headers={"Content-Type":"application/json; charset=utf-8"}, method="POST")
     with urllib.request.urlopen(req, timeout=20) as r: return json.load(r)
 
+def page_answers(url: str) -> bool:
+    try:
+        req = urllib.request.Request(url, method="GET")
+        with urllib.request.urlopen(req, timeout=12) as r:
+            return 200 <= r.status < 300
+    except Exception:
+        return False
+
+def is_quick_tunnel(url: str) -> bool:
+    try:
+        host = (urlparse(url).hostname or "")
+    except Exception:
+        return False
+    return host.endswith(".trycloudflare.com")
+
 menu=get(f"https://api.telegram.org/bot{bot}/getChatMenuButton?chat_id={chat}").get("result") or {}
 url=((menu.get("web_app") or {}).get("url")) or ""
-qs_t=(parse_qs(urlparse(url).query).get("t") or [""])[0]
-t=(qs_t or fallback).strip()
-if not t:
-    print("skip: no BOARD_READ_TOKEN / BOARD_TOKEN and menu URL has no t=")
-    raise SystemExit(0)
-brokers=f"https://omp.net.ua/md-access/brokers?t={t}"
-# Temporary OMP customs fallback only if brokers path somehow missing from desired URL construction.
-# Live target is always md-access brokers when token is available.
 text=menu.get("text") or ""
 mtype=menu.get("type") or ""
-need = (mtype != "web_app") or (text != "Процеси") or ("/brokers?" not in url)
+qs_t=(parse_qs(urlparse(url).query).get("t") or [""])[0]
+t=(qs_t or fallback).strip()
+if not t and not (is_quick_tunnel(url) and page_answers(url)):
+    print("skip: no BOARD_READ_TOKEN / BOARD_TOKEN and menu URL has no t=")
+    raise SystemExit(0)
+
+brokers=f"https://omp.net.ua/md-access/brokers?t={t}" if t else ""
+
+# Living leader tunnel: keep it (only fix label if needed).
+if is_quick_tunnel(url) and page_answers(url):
+    if mtype == "web_app" and text == "Процеси":
+        print("ok tunnel", urlparse(url).hostname)
+        raise SystemExit(0)
+    r=post(f"https://api.telegram.org/bot{bot}/setChatMenuButton", {
+      "chat_id": chat,
+      "menu_button": {"type":"web_app","text":"Процеси","web_app":{"url":url}},
+    })
+    print("fixed label tunnel", r.get("ok"), urlparse(url).hostname)
+    raise SystemExit(0)
+
+# Dead tunnel / wrong host → durable brokers (scan fallback; same host as МДдок when no tunnel).
+if not brokers:
+    print("skip: cannot build brokers fallback")
+    raise SystemExit(0)
+need = (mtype != "web_app") or (text != "Процеси") or ("/md-access/brokers?" not in url)
 if not need:
-    print("ok", text)
+    print("ok brokers")
     raise SystemExit(0)
 r=post(f"https://api.telegram.org/bot{bot}/setChatMenuButton", {
   "chat_id": chat,
   "menu_button": {"type":"web_app","text":"Процеси","web_app":{"url":brokers}},
 })
-print("fixed", r.get("ok"), "was", text, mtype)
+print("fixed brokers", r.get("ok"), "was", text, mtype, (urlparse(url).hostname or "")[:40])
 PY

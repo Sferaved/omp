@@ -58,10 +58,19 @@ Install the public key into `/home/ubuntu/.ssh/authorized_keys` on the VPS (Batc
 
 ## Office Telegram menu + keyboard (durable)
 
+Distinct boards (matches MDDocImport `OmpBoardRelay` / `BlueProcessMenu`):
+
+| Button | Target |
+|--------|--------|
+| Menu **Процеси** | Live leader `*.trycloudflare.com/board` when it answers; else durable `/md-access/brokers?t=…` |
+| Keyboard **Процеси · OMP** | `/md-access/board?t=…` (митниця / phone) |
+| Keyboard **МДдок імпорт** | `/md-access/brokers?t=…` (зріз брокерів / broker-phone) |
+
 - Menu guard: `/usr/local/bin/omp-telegram-menu-guard.sh` + `/etc/cron.d/omp-telegram-menu-guard` (every minute)
-  - Forces chat menu button text **Процеси** with web_app **`/md-access/brokers?t=…`**
+  - Keeps label **Процеси**; does **not** overwrite a living trycloudflare menu URL
+  - If menu is missing/dead/wrong → durable `/md-access/brokers?t=…`
 - Webhook: `omp-telegram-webhook.service` on `127.0.0.1:8791`, nginx `location /telegram-office-hook/`
-  - `/start` restores menu + bottom ReplyKeyboardMarkup (`Процеси · OMP` + `МДдок імпорт`, both → brokers)
+  - `/start` restores menu + bottom ReplyKeyboardMarkup with the three distinct URLs above
   - **Never** `deleteMessage` on the keyboard message (Telegram drops reply keyboard)
 - Clear chat history also removes reply keyboard — user should `/start` again
 - Director Windows `BlueProcessMenu` spam/wrong label: see `patches/MDDocImport-blue-menu-spam-fix.md`
