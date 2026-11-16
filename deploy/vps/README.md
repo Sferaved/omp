@@ -54,3 +54,14 @@ Host omp-prod
 ```
 
 Install the public key into `/home/ubuntu/.ssh/authorized_keys` on the VPS (BatchMode SCP requires key auth). Rotate the root password after setup.
+
+
+## Office Telegram menu + keyboard (durable)
+
+- Menu guard: `/usr/local/bin/omp-telegram-menu-guard.sh` + `/etc/cron.d/omp-telegram-menu-guard` (every minute)
+  - Forces chat menu button text **Процеси** with web_app **`/md-access/brokers?t=…`**
+- Webhook: `omp-telegram-webhook.service` on `127.0.0.1:8791`, nginx `location /telegram-office-hook/`
+  - `/start` restores menu + bottom ReplyKeyboardMarkup (`Процеси · OMP` + `МДдок імпорт`, both → brokers)
+  - **Never** `deleteMessage` on the keyboard message (Telegram drops reply keyboard)
+- Clear chat history also removes reply keyboard — user should `/start` again
+- Director Windows `BlueProcessMenu` spam/wrong label: see `patches/MDDocImport-blue-menu-spam-fix.md`
