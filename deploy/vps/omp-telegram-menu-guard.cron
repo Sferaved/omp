@@ -1,0 +1,5 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+# Promote living trycloudflare menu only — never sendMessage
+* * * * * root /usr/local/bin/omp-telegram-menu-guard.sh >> /var/log/omp-telegram-menu-guard.log 2>&1
+# CTTF-50: live copy may be renamed *.CTTF50-PAUSE while Telegram 429 cools
